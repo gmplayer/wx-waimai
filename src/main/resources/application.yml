@@ -1,0 +1,71 @@
+server:
+  port: 8080
+  #servlet:
+#    context-path: /sell
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/wxdining?characterEncoding=utf-8&useSSL=false
+    type: com.alibaba.druid.pool.DruidDataSource
+    ##################    连接池配置    ################
+    #连接池建立时创建的初始化连接数initial-size=5
+    druid:
+      initial-size: 5
+    #连接池中最大的活跃连接数
+      max-active: 20
+    #连接池中最小的活跃连接数
+      min-idle: 5
+    # 配置获取连接等待超时的时间
+      max-wait: 60000
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+    #spring.datasource.druid.max-open-prepared-statements= #和上面的等价
+      validation-query: SELECT 1 FROM DUAL
+      validation-query-timeout: 30000
+    #是否在获得连接后检测其可用性
+      test-on-borrow: false
+    #是否在连接放回连接池后检测其可用性
+      test-on-return: false
+    #是否在连接空闲一段时间后检测其可用性
+      test-while-idle: true
+    #spring.datasource.druid.time-between-eviction-runs-millis=
+    #spring.datasource.druid.min-evictable-idle-time-millis=
+    #spring.datasource.druid.max-evictable-idle-time-millis=
+
+
+  jpa:
+    show-sql: true
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    timeout: 100
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 2
+        max-idle: 10
+
+  jackson:
+    default-property-inclusion: non_null
+  freemarker:
+    cache: false
+    content-type: text/html
+    enabled: true
+
+##########################  mybatis   ##########################
+mybatis:
+  #mapper.xml文件放置的位置
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis-config.xml
+
+logging:
+  level:
+    com.waimai.dao.mapper: trace
+

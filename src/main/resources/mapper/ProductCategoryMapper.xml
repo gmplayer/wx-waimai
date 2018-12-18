@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.waimai.dao.mapper.CategoryMapper">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="com.waimai.pojo.ProductCategory">
+        <result column="category_id" property="categoryId" jdbcType="INTEGER"/>
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR"/>
+        <result column="category_type" property="categoryType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <select id="getProductCategoryById" resultMap="BaseResultMap" parameterType="Integer" resultType="com.waimai.pojo.ProductCategory">
+        SELECT category_id,category_name,category_type FROM product_category WHERE category_id=#{category_id};
+    </select>
+
+    <select id="getProductCategoryAll"  resultType="com.waimai.pojo.ProductCategory">
+        SELECT category_id as categoryId,category_name as categoryName,category_type as categoryType FROM product_category;
+    </select>
+
+    <select id="getProductCategoryName" resultMap="BaseResultMap"  resultType="com.waimai.pojo.ProductCategory">
+        SELECT * FROM product_category where category_name like #{name};
+    </select>
+
+    <insert id="addProductCategory" parameterType="com.waimai.pojo.ProductCategory">
+        insert into product_category(category_name,category_type) values(#{categoryName},#{categoryType})
+    </insert>
+
+    <update id="updateProductCategory" parameterType="com.waimai.pojo.ProductCategory">
+        update  product_category set category_name = #{categoryName},category_type = #{categoryType} where category_id= #{categoryId}
+    </update>
+
+    <delete id="delProductCategory" parameterType="String">
+        delete from product_category where category_id = #{categoryId}
+    </delete>
+
+    <!--&lt;!&ndash;auto generated Code&ndash;&gt;-->
+    <!--<insert id="insert" useGeneratedKeys="true" keyProperty="productCategory.categoryId">-->
+    <!--INSERT INTO product_category (-->
+    <!--category_id,-->
+    <!--category_name,-->
+    <!--category_type-->
+    <!--) VALUES (-->
+    <!--#{productCategory.categoryId,jdbcType=VARCHAR},-->
+    <!--#{productCategory.categoryName,jdbcType=VARCHAR},-->
+    <!--#{productCategory.categoryType,jdbcType=INTEGER}-->
+    <!--)-->
+    <!--</insert>-->
+
+    <!--&lt;!&ndash;auto generated Code&ndash;&gt;-->
+    <!--<insert id="insertSelective" useGeneratedKeys="true" keyProperty="productCategory.categoryId">-->
+    <!--INSERT INTO product_category-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+    <!--<if test="productCategory.categoryId!=null"> category_id,</if>-->
+    <!--<if test="productCategory.categoryName!=null"> category_name,</if>-->
+    <!--<if test="productCategory.categoryType!=null"> category_type,</if>-->
+    <!--</trim>-->
+    <!--VALUES-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+    <!--<if test="productCategory.categoryId!=null">#{productCategory.categoryId,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="productCategory.categoryName!=null">#{productCategory.categoryName,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="productCategory.categoryType!=null">#{productCategory.categoryType,jdbcType=INTEGER},-->
+    <!--</if>-->
+    <!--</trim>-->
+    <!--</insert>-->
+
+    <!--&lt;!&ndash;auto generated Code&ndash;&gt;-->
+    <!--<insert id="insertList">-->
+    <!--INSERT INTO product_category (-->
+    <!--category_id,-->
+    <!--category_name,-->
+    <!--category_type-->
+    <!--)VALUES-->
+    <!--<foreach collection="productCategorys" item="productCategory" index="index" separator=",">-->
+    <!--(-->
+    <!--#{productCategory.categoryId,jdbcType=VARCHAR},-->
+    <!--#{productCategory.categoryName,jdbcType=VARCHAR},-->
+    <!--#{productCategory.categoryType,jdbcType=INTEGER}-->
+    <!--)-->
+    <!--</foreach>-->
+    <!--</insert>-->
+
+    <!--&lt;!&ndash;auto generated Code&ndash;&gt;-->
+    <!--<update id="updateByPrimaryKeySelective">-->
+    <!--UPDATE product_category-->
+    <!--<set>-->
+    <!--<if test="productCategory.categoryName != null"> category_name= #{productCategory.categoryName,jdbcType=VARCHAR},</if>-->
+    <!--<if test="productCategory.categoryType != null"> category_type= #{productCategory.categoryType,jdbcType=INTEGER}</if>-->
+    <!--</set>-->
+    <!--WHERE category_id = #{productCategory.categoryId,jdbcType=VARCHAR}-->
+    <!--</update>-->
+</mapper>
+
